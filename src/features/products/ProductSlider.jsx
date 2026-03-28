@@ -7,9 +7,9 @@ import ProductCard from "./ProductCard";
 
 function ProductSlider({ title, data }) {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-2 bg-white">
       <div className="container-custom">
-        <div className="flex justify-between items-end mb-10">
+        <div className="flex justify-between items-end mb-5">
           <div>
             <h2 className="text-3xl font-black uppercase tracking-tight text-heading">
               {title}
@@ -22,7 +22,7 @@ function ProductSlider({ title, data }) {
         </div>
 
         <Swiper
-          slidesPerView={4}
+          slidesPerView={5}
           spaceBetween={20}
           navigation={true}
           loop={data?.length >= 4}

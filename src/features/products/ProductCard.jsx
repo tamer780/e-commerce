@@ -1,4 +1,5 @@
 import { ShoppingCart, Heart, Eye, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function ProductCard({ product }) {
   const oldPrice = (
@@ -14,12 +15,13 @@ function ProductCard({ product }) {
             -{Math.round(product?.discountPercentage)}%
           </span>
         )}
-
-        <img
-          src={product?.thumbnail}
-          alt={product?.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
+        <Link to={`/product/${product?.id}`}>
+          <img
+            src={product?.thumbnail}
+            alt={product?.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        </Link>
 
         <div className="absolute top-4 -right-12.5 group-hover:right-4 flex flex-col gap-2 transition-all duration-300 ease-in-out z-20">
           <button className="bg-white p-2.5 rounded-full shadow-lg hover:bg-main hover:text-white transition-colors">
@@ -34,7 +36,6 @@ function ProductCard({ product }) {
         </div>
       </div>
 
-      {/* 3. Product Info */}
       <div className="p-4">
         <p className="text-gray-400 text-[10px] uppercase font-bold tracking-wider mb-1">
           {product?.category}

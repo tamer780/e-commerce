@@ -20,7 +20,7 @@ function Hero() {
   ];
 
   return (
-    <section className="hero-section mt-32">
+    <section className="hero-section mt-38">
       <div className="container-custom">
         <Swiper
           modules={[Pagination, Autoplay]}

@@ -8,24 +8,28 @@ const CATEGORIES = [
   {
     id: 1,
     title: "Men's Collection",
+    slug: "men-collection",
     description: "Quality and style for him",
     image: imageMen,
   },
   {
     id: 2,
     title: "Women's Fashion",
+    slug: "women-fashion",
     description: "Elegant and modern styles",
     image: imageWomen,
   },
   {
     id: 3,
     title: "Tech & Gadgets",
+    slug: "tech-gadgets",
     description: "Latest electronics and gear",
     image: imageTeck,
   },
   {
     id: 4,
     title: "Premium Shoes",
+    slug: "premium-shoes",
     description: "Step into comfort",
     image: imageShose,
   },
@@ -48,6 +52,7 @@ function CategoryGrid() {
           <CategoryCard
             key={cat.id}
             title={cat.title}
+            slug={cat.slug}
             description={cat.description}
             image={cat.image}
           />

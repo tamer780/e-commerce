@@ -1,20 +1,23 @@
 import { ShoppingCart, Heart } from "lucide-react";
 import logoImage from "../../../assets/images/Logo.png";
 import SearchBox from "./SearchBox";
+import { Link } from "react-router-dom";
 
 function TopNavbar() {
   return (
     <div className="container-custom flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <img
-          src={logoImage}
-          alt="logo_for_App_Cartify"
-          className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-full bg-white  border-2 border-main"
-        />
-        <h1 className="text-heading font-black text-2xl tracking-tighter uppercase">
-          Cartify
-        </h1>
-      </div>
+      <Link to="/">
+        <div className="flex items-center gap-3">
+          <img
+            src={logoImage}
+            alt="logo_for_App_Cartify"
+            className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-full bg-white  border-2 border-main"
+          />
+          <h1 className="text-heading font-black text-2xl tracking-tighter uppercase">
+            Cartify
+          </h1>
+        </div>
+      </Link>
 
       <div className="flex-1 max-w-112.5 mx-4">
         <SearchBox />
