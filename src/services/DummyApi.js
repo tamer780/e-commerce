@@ -47,3 +47,39 @@ export async function fetchProductById(id) {
 
   return res.json();
 }
+
+/* login*/
+
+export async function loginUser(credentials) {
+  const response = await fetch("https://dummyjson.com/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Login failed");
+  }
+
+  return response.json();
+}
+
+//add user//
+
+export async function registerUser(credentials) {
+  // eslint-disable-next-line no-unused-vars
+  const { confirmPassword, ...dataToSend } = credentials;
+  const response = await fetch("https://dummyjson.com/users/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataToSend),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Registration failed");
+  }
+  return response.json();
+}

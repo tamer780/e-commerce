@@ -1,22 +1,26 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 
-// CSS Imports
 import "swiper/css";
 import "swiper/css/pagination";
 
-// Assets
 import banner1 from "../../assets/images/banner1.jfif";
 import banner2 from "../../assets/images/banner2.jfif";
 import banner3 from "../../assets/images/banner3.jfif";
 import banner4 from "../../assets/images/banner4.jfif";
+import { Link } from "react-router-dom";
 
 function Hero() {
   const slides = [
-    { image: banner1, text: "Summer Collection", cta: "Shop Now" },
-    { image: banner2, text: "New Tech Gadgets", cta: "Explore" },
-    { image: banner3, text: "Flash Sale", cta: "View Deals" },
-    { image: banner4, text: "Free Shipping", cta: "Learn More" },
+    { image: banner1, text: "Summer Collection", cta: "Shop Now", path: "/" },
+    {
+      image: banner2,
+      text: "New Tech Gadgets",
+      cta: "Explore",
+      path: "category/tech-gadgets",
+    },
+    { image: banner3, text: "Flash Sale", cta: "View Deals", path: "/" },
+    { image: banner4, text: "Free Shipping", cta: "Learn More", path: "/" },
   ];
 
   return (
@@ -44,9 +48,11 @@ function Hero() {
                   <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4 drop-shadow-md">
                     {slide.text}
                   </h2>
-                  <button className="bg-main text-white w-fit px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer">
-                    {slide.cta}
-                  </button>
+                  <Link to={slide.path}>
+                    <button className="bg-main text-white w-fit px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer">
+                      {slide.cta}
+                    </button>
+                  </Link>
                 </div>
               </div>
             </SwiperSlide>

@@ -9,6 +9,11 @@ import CategoryCard from "./features/categories/CategoryCard.jsx";
 import Electronics from "./pages/Electronics.jsx";
 import Fashion from "./pages/Fashion.jsx";
 import Clothes from "./pages/Clothes.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import { Toaster } from "react-hot-toast";
+import Checkout from "./features/checkout/Checkout.jsx";
+import ProtectedRoute from "./features/auth/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +31,12 @@ const router = createBrowserRouter([
       { path: "clothes", element: <Clothes /> },
       { path: "electronics", element: <Electronics /> },
       { path: "fashion", element: <Fashion /> },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: "checkout", element: <Checkout /> }],
+      },
     ],
   },
 ]);
@@ -33,8 +44,11 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient();
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <>
+      <Toaster position="bottom-right" reverseOrder={false} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </>
   );
 }

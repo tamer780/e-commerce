@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { LayoutGrid, User, LogOut, ChevronDown } from "lucide-react";
+import { LayoutGrid, User, ChevronDown } from "lucide-react";
 import { fetchCategories } from "../../../services/DummyApi";
+import { useSelector } from "react-redux";
+import LogoutButton from "../../../features/auth/LogoutButton";
 
 const NAVBAR_LINKS = [
   { name: "Home", path: "/" },
@@ -14,7 +16,8 @@ const NAVBAR_LINKS = [
 function BottomNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const isAuth = false;
+
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const {
     data: categories,
@@ -92,26 +95,32 @@ function BottomNavBar() {
         </ul>
 
         <div className="flex items-center gap-4 shrink-0 border-l border-border-custom pl-4 scale-90 origin-right">
-          {isAuth ? (
+          {isAuthenticated ? (
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 cursor-pointer group">
                 <div className="w-8 h-8 bg-surface rounded-full flex items-center justify-center border border-border-custom group-hover:border-main transition-all overflow-hidden">
                   <User size={16} className="text-p group-hover:text-main" />
                 </div>
                 <span className="text-sm font-bold text-heading group-hover:text-main transition-colors">
-                  Tamer
+                  {user?.username || "user"}
                 </span>
               </div>
 
-              <button className="flex items-center gap-1 text-xs font-bold text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg transition-all cursor-pointer">
-                <LogOut size={16} />
-                <span className="uppercase">Logout</span>
-              </button>
+              <LogoutButton />
             </div>
           ) : (
-            <button className="text-main font-bold text-sm hover:underline cursor-pointer">
-              Login / Register
-            </button>
+            <div>
+              <Link to="login">
+                <button className="text-main font-bold text-sm hover:underline cursor-pointer">
+                  Login /
+                </button>
+              </Link>
+              <Link to="register">
+                <button className="text-main font-bold text-sm hover:underline cursor-pointer ml-1">
+                  Register
+                </button>
+              </Link>
+            </div>
           )}
         </div>
       </div>

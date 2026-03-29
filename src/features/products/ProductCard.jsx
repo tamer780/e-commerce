@@ -2,6 +2,9 @@ import { ShoppingCart, Heart, Eye, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function ProductCard({ product }) {
+  const cssIcons =
+    "bg-white p-2.5 rounded-full shadow-lg hover:bg-main hover:text-white transition-colors";
+
   const oldPrice = (
     product.price /
     (1 - product.discountPercentage / 100)
@@ -9,7 +12,7 @@ function ProductCard({ product }) {
 
   return (
     <article className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
+      <div className="relative aspect-square overflow-hidden bg-gray-50 ">
         {product.discountPercentage > 0 && (
           <span className="absolute top-3 left-3 z-10 bg-main text-white text-[10px] font-bold px-2 py-1 rounded-full">
             -{Math.round(product?.discountPercentage)}%
@@ -17,20 +20,20 @@ function ProductCard({ product }) {
         )}
         <Link to={`/product/${product?.id}`}>
           <img
-            src={product?.thumbnail}
+            src={(product?.images ?? [])[0]}
             alt={product?.title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
         </Link>
 
         <div className="absolute top-4 -right-12.5 group-hover:right-4 flex flex-col gap-2 transition-all duration-300 ease-in-out z-20">
-          <button className="bg-white p-2.5 rounded-full shadow-lg hover:bg-main hover:text-white transition-colors">
+          <button className={cssIcons}>
             <ShoppingCart size={18} />
           </button>
-          <button className="bg-white p-2.5 rounded-full shadow-lg hover:bg-red-500 hover:text-white transition-colors">
+          <button className={cssIcons}>
             <Heart size={18} />
           </button>
-          <button className="bg-white p-2.5 rounded-full shadow-lg hover:bg-blue-500 hover:text-white transition-colors">
+          <button className={cssIcons}>
             <Eye size={18} />
           </button>
         </div>

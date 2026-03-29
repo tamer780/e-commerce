@@ -34,8 +34,6 @@ function CategoryPage() {
 
   const allProducts = data?.flatMap((cat) => cat.products) || [];
 
-  console.log(categorySlug);
-
   return (
     <div className="container-custom">
       <header className="mt-36">
