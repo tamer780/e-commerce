@@ -12,7 +12,10 @@ function MainLayout() {
       <ScrollToTop />
       <Navbar />
 
-      <main className="min-h-screen">
+      <main
+        className="min-h-screen"
+        style={{ paddingTop: "var(--navbar-height)" }}
+      >
         <AnimatePresence mode="wait">
           <PageTransition key={location.pathname}>
             <Outlet />

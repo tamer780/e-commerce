@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Hero from "../components/Layout/Hero.jsx";
+import Hero from "../components/UI/Hero.jsx";
 import CategoryGrid from "../features/categories/CategoryGrid.jsx";
 import ProductSlider from "../features/products/ProductSlider.jsx";
 import { fetchProductsByMultipleCategories } from "../services/DummyApi.js";
@@ -23,7 +23,7 @@ export default function Home() {
     return <div className="text-red-500 text-center">{error.message}</div>;
 
   return (
-    <div>
+    <div className="mt-12">
       <Hero />
       <CategoryGrid />
       {categoriesData?.map((item) => (

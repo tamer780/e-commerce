@@ -1,9 +1,18 @@
 import { ShoppingCart, Heart, Eye, Star } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { cartAction } from "../cart/cartSlice";
+import toast from "react-hot-toast";
+const cssIcons =
+  "bg-white p-2.5 rounded-full shadow-lg hover:bg-main hover:text-white transition-all duration-200 active:scale-95";
 
 function ProductCard({ product }) {
-  const cssIcons =
-    "bg-white p-2.5 rounded-full shadow-lg hover:bg-main hover:text-white transition-colors";
+  const dispatch = useDispatch();
+
+  function handleAddItem() {
+    dispatch(cartAction.addToCart(product));
+    toast.success(`${product.title} added to cart successfully`);
+  }
 
   const oldPrice = (
     product.price /
@@ -27,7 +36,7 @@ function ProductCard({ product }) {
         </Link>
 
         <div className="absolute top-4 -right-12.5 group-hover:right-4 flex flex-col gap-2 transition-all duration-300 ease-in-out z-20">
-          <button className={cssIcons}>
+          <button className={cssIcons} onClick={handleAddItem}>
             <ShoppingCart size={18} />
           </button>
           <button className={cssIcons}>

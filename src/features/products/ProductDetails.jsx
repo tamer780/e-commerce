@@ -5,9 +5,13 @@ import { ShoppingCart, Tag, Star, Heart, AlertCircle } from "lucide-react";
 import ProductImages from "./ProductImages";
 import { fetchProductById } from "../../services/DummyApi";
 import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
+import { useDispatch } from "react-redux";
+import { cartAction } from "../cart/cartSlice";
+import toast from "react-hot-toast";
 
 function ProductDetails() {
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const {
     data: item,
@@ -18,6 +22,11 @@ function ProductDetails() {
     queryFn: () => fetchProductById(id),
     enabled: !!id,
   });
+
+  function handleAddToCart() {
+    dispatch(cartAction.addToCart(item));
+    toast.success(`${item.title} added to cart successfully`);
+  }
 
   const hasDiscount = item?.discountPercentage > 0;
 
@@ -39,9 +48,8 @@ function ProductDetails() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="max-w-6xl mx-auto px-4 pb-8 grid grid-cols-1 md:grid-cols-2 gap-12">
       <ProductImages images={item.images ?? []} alt={item.title} />
-
       <div className="flex flex-col gap-6 justify-center">
         <div className="space-y-2">
           <span className="inline-flex items-center gap-1.5 text-main bg-main/10 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
@@ -104,7 +112,10 @@ function ProductDetails() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t">
-          <button className="flex-1 bg-main text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:shadow-lg hover:shadow-main/20 active:scale-[0.98] transition-all">
+          <button
+            onClick={handleAddToCart}
+            className="flex-1 bg-main text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:shadow-lg hover:shadow-main/20 active:scale-[0.98] transition-all"
+          >
             <ShoppingCart size={20} />
             Add to Cart
           </button>

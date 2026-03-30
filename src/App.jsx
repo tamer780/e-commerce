@@ -14,6 +14,7 @@ import Register from "./pages/Register.jsx";
 import { Toaster } from "react-hot-toast";
 import Checkout from "./features/checkout/Checkout.jsx";
 import ProtectedRoute from "./features/auth/ProtectedRoute.jsx";
+import Cart from "./features/cart/Cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "fashion", element: <Fashion /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "cart", element: <Cart /> },
       {
         element: <ProtectedRoute />,
         children: [{ path: "checkout", element: <Checkout /> }],

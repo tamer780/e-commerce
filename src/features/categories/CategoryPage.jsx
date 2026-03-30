@@ -36,7 +36,7 @@ function CategoryPage() {
 
   return (
     <div className="container-custom">
-      <header className="mt-36">
+      <header>
         <h1 className="text-4xl font-black uppercase tracking-tighter italic">
           {categorySlug?.replace("-", " ")}
         </h1>

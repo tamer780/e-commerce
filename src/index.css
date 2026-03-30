@@ -6,6 +6,8 @@
   --color-surface: #f3f3f3;
   --color-heading: #253237;
   --color-border-custom: #d6d6d6d5;
+  --navbar-height-md: 136px;
+  --navbar-height: 64px;
 }
 body {
   background-color: white;
@@ -22,6 +24,11 @@ body {
 @media (min-width: 768px) {
   .container-custom {
     padding: 16px 24px;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --navbar-height: var(--navbar-height-md);
   }
 }
 
