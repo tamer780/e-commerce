@@ -3,15 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { ShoppingCart, Tag, Star, Heart, AlertCircle } from "lucide-react";
 
 import ProductImages from "./ProductImages";
-import { fetchProductById } from "../../services/DummyApi";
 import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
-import { useDispatch } from "react-redux";
-import { cartAction } from "../cart/cartSlice";
-import toast from "react-hot-toast";
+
+import { fetchProductById } from "../../services/DummyApi";
+import { useCart } from "../../hooks/useCart";
+import { useWishlist } from "../../hooks/useWishlist";
 
 function ProductDetails() {
   const { id } = useParams();
-  const dispatch = useDispatch();
 
   const {
     data: item,
@@ -23,10 +22,8 @@ function ProductDetails() {
     enabled: !!id,
   });
 
-  function handleAddToCart() {
-    dispatch(cartAction.addToCart(item));
-    toast.success(`${item.title} added to cart successfully`);
-  }
+  const { handleAddToCart, inCart } = useCart(item);
+  const { handleAddToWishlist, inWishlist } = useWishlist(item);
 
   const hasDiscount = item?.discountPercentage > 0;
 
@@ -50,6 +47,7 @@ function ProductDetails() {
   return (
     <div className="max-w-6xl mx-auto px-4 pb-8 grid grid-cols-1 md:grid-cols-2 gap-12">
       <ProductImages images={item.images ?? []} alt={item.title} />
+
       <div className="flex flex-col gap-6 justify-center">
         <div className="space-y-2">
           <span className="inline-flex items-center gap-1.5 text-main bg-main/10 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
@@ -69,7 +67,9 @@ function ProductDetails() {
             <span className="text-gray-300">|</span>
 
             <span
-              className={`text-sm font-semibold ${item.stock < 10 ? "text-red-500" : "text-emerald-600"}`}
+              className={`text-sm font-semibold ${
+                item.stock < 10 ? "text-red-500" : "text-emerald-600"
+              }`}
             >
               {item.stock} units available
             </span>
@@ -117,11 +117,25 @@ function ProductDetails() {
             className="flex-1 bg-main text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:shadow-lg hover:shadow-main/20 active:scale-[0.98] transition-all"
           >
             <ShoppingCart size={20} />
-            Add to Cart
+            {inCart ? "Item in Cart" : "Add to Cart"}
           </button>
 
-          <button className="p-4 border-2 border-gray-100 rounded-xl hover:bg-blue-50 hover:border-blue-100 hover:text-main transition-all group">
-            <Heart size={20} className="group-active:fill-main" />
+          <button
+            onClick={handleAddToWishlist}
+            className={`p-4 border-2 rounded-xl transition-all group ${
+              inWishlist
+                ? "bg-red-50 border-red-200 text-red-500"
+                : "border-gray-100 hover:bg-red-50 hover:border-red-200 hover:text-red-500"
+            }`}
+          >
+            <Heart
+              size={20}
+              className={
+                inWishlist
+                  ? "fill-red-500"
+                  : "group-hover:fill-red-500 fill-none"
+              }
+            />
           </button>
         </div>
       </div>

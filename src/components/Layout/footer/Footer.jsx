@@ -40,7 +40,7 @@ function Footer() {
               to="/"
               className="text-2xl font-black tracking-tighter italic uppercase text-heading"
             >
-              Store<span className="text-main">.</span>
+              Cartify<span className="text-main">.</span>
             </Link>
             <p className="text-p text-sm leading-relaxed max-w-xs">
               Your one-stop destination for premium fashion, latest tech, and

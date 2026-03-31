@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
 
   const isEmpty = items.length === 0;
+
+  const navigate = useNavigate();
 
   return (
     <div className="container-custom flex items-center justify-center py-16 sm:py-24">
@@ -35,7 +38,10 @@ function Cart() {
             </span>
           </div>
 
-          <button className="w-full bg-main text-white py-4 rounded-lg font-bold text-lg hover:bg-main/90 active:scale-[.98] transition-all duration-200 shadow-md shadow-main/20 cursor-pointer">
+          <button
+            onClick={() => navigate("/checkout")}
+            className="w-full bg-main text-white py-4 rounded-lg font-bold text-lg hover:bg-main/90 active:scale-[.98] transition-all duration-200 shadow-md shadow-main/20 cursor-pointer"
+          >
             Checkout
           </button>
         </div>

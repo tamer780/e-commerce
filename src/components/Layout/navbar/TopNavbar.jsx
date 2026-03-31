@@ -27,7 +27,8 @@ function TopNavbar() {
       </div>
 
       <div className="flex gap-1">
-        <button
+        <Link
+          to="/wishlist"
           aria-label="Wishlist"
           className="relative p-2 text-heading hover:text-main hover:bg-main/10 rounded-full transition-all cursor-pointer group"
         >
@@ -36,8 +37,10 @@ function TopNavbar() {
             strokeWidth={1.5}
             className="group-hover:fill-main/20"
           />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-main rounded-full border-2 border-white"></span>
-        </button>
+          <span className="absolute top-2 right-2 w-2 h-2 bg-main rounded-full border-2 border-white">
+            {}
+          </span>
+        </Link>
         <Link
           to="/cart"
           className="relative p-2 text-heading hover:text-main hover:bg-main/10 rounded-full transition-all cursor-pointer block"
