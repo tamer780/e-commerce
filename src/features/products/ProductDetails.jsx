@@ -8,6 +8,7 @@ import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
 import { fetchProductById } from "../../services/DummyApi";
 import { useCart } from "../../hooks/useCart";
 import { useWishlist } from "../../hooks/useWishlist";
+import { currenyFormatter } from "../../utils/formatterPrice";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -77,7 +78,9 @@ function ProductDetails() {
         </div>
 
         <div className="flex items-end gap-3">
-          <span className="text-4xl font-black text-main">${item.price}</span>
+          <span className="text-4xl font-black text-main">
+            {currenyFormatter.format(item.price)}
+          </span>
 
           {hasDiscount && (
             <div className="flex flex-col mb-1">
@@ -85,7 +88,7 @@ function ProductDetails() {
                 -{Math.round(item.discountPercentage)}%
               </span>
               <del className="text-gray-400 text-sm font-medium">
-                ${originalPrice}
+                {currenyFormatter.format(originalPrice)}
               </del>
             </div>
           )}

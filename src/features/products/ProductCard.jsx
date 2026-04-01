@@ -2,6 +2,7 @@ import { ShoppingCart, Heart, Eye, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useWishlist } from "../../hooks/useWishlist";
+import { currenyFormatter } from "../../utils/formatterPrice";
 
 const cssIcons =
   "bg-white p-2.5 rounded-full shadow-lg hover:bg-main hover:text-white transition-all duration-200 active:scale-95";
@@ -78,7 +79,7 @@ function ProductCard({ product }) {
 
           <div className="flex items-center gap-2">
             <strong className="text-main font-black text-lg">
-              ${product.price}
+              {currenyFormatter.format(product.price)}
             </strong>
             <del className="text-gray-400 text-xs">${oldPrice}</del>
           </div>

@@ -1,6 +1,7 @@
 import { Trash, Plus, Minus } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { cartAction } from "./cartSlice";
+import { currenyFormatter } from "../../utils/formatterPrice";
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function CartItem({ item }) {
               {item.title}
             </h3>
             <p className="text-main font-bold text-sm mt-1">
-              ${Number(item.price).toFixed(2)}
+              {currenyFormatter.format(item.price)}
             </p>
           </div>
 

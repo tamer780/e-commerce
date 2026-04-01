@@ -1,6 +1,7 @@
 import { Trash2, ShoppingCart, Star } from "lucide-react";
 import { useCart } from "../../hooks/useCart";
 import { useWishlist } from "../../hooks/useWishlist";
+import { currenyFormatter } from "../../utils/formatterPrice";
 
 function WishlistItem({ product }) {
   const { handleAddToCart } = useCart(product);
@@ -34,7 +35,7 @@ function WishlistItem({ product }) {
 
         <div className="flex items-center gap-2">
           <strong className="text-main font-black text-base">
-            ${product.price}
+            {currenyFormatter.format(product.price)}
           </strong>
 
           <del className="text-gray-400 text-xs">

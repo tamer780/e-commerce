@@ -83,3 +83,24 @@ export async function registerUser(credentials) {
   }
   return response.json();
 }
+
+//add to cart
+
+export async function placeOrder(orderData) {
+  const response = await fetch("https://dummyjson.com/carts/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: 1,
+      products: orderData.order.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+      })),
+    }),
+  });
+
+  if (!response.ok) throw new Error("Failed to place order");
+  return response.json();
+}

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
+import { currenyFormatter } from "../../utils/formatterPrice";
 
 function Cart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
@@ -34,7 +35,7 @@ function Cart() {
           <div className="flex justify-between items-center mb-6">
             <span className="text-p font-medium text-lg">Total:</span>
             <span className="text-2xl font-bold text-heading">
-              ${totalPrice.toFixed(2)}
+              {currenyFormatter.format(totalPrice)}
             </span>
           </div>
 
